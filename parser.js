@@ -1,14 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
 	const body = document.querySelector('body');
+	const textNodes = [];
 	function recurse(element) {
 		element.childNodes.forEach(node => {
-			console.log(node);
-
-			if (element.childNodes.length > 1) {
+			if (node.nodeName.match(/^H\d/)) {
+				textNodes.push(node.textContent);
+			} else {
 				recurse(node);
 			}
 		});
 	}
 
 	recurse(body);
+	console.log(textNodes);
 });
